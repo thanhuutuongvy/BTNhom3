@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Document</title>
+    <style>
+    body {
+            background-color:#E6E6E6;
+            line-height: 1.5;
+            font-family: Helvetica,sans-serif;
+      }
+      #wrapper {
+        max-width: 1170px;
+        margin: 0px auto;
+      }
+/*header*/
+      header {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between; /*Căn các phần tử bên trong theo chiều ngang với khoảng cách đều nhau.*/
+      align-items: center;
+      background-color:#C4CCC6;
+    }
+
+      .logo {
+      text-align: center;
+      flex-grow: 1; /*Cho phần tử mở rộng để lấp đầy không gian còn lại trong container.*/
+    }
+
+    .logo img {
+      width: 150px;
+    }
+    
+    .search {
+      order: -1; /*Đặt thứ tự hiển thị của phần tử là đầu tiên trong container.*/
+      margin-right: auto; /*Đặt lề phải của phần tử là "auto", tức là căn phần tử sang cạnh trái của container.*/
+    }
+    .search a {
+        color:#435334;
+    }
+    .wishlist a,
+    .account a,
+    .cart a {
+      order: 2;
+      margin: 10px;
+      color:#435334;
+    }
+    
+    .nav li {
+            display:inline; /*Hiển thị các phần tử li theo hàng ngang*/
+            margin: 3%; 
+            
+        }
+    .nav{
+            text-align: center;
+        }
+    .nav a{
+            text-decoration: none; /*Loại bỏ gạch chân dưới liên kế*/
+            color:black;
+            font-weight: 600;  
+        }
+    .nav li a:hover {
+            color:#5f9ea0; /*hiệu ứng đổi màu khi hover chuột vào các phần tử*/
+        }
+
+    /*slider*/
+    .slider {
+      width:100%;
+      height:auto ;
+      margin: 0 auto;
+      position: relative;
+    }
+    .slider-image img {
+       width: 100%;
+      height:auto ;
+    }
+    .slider-text {
+      position: absolute;/*Đặt phần tử .slider-text với vị trí tuyệt đối trong khung cha (.slider), điều này cho phép chúng ta điều chỉnh vị trí của phần tử theo ý muốn.*/
+      top: 50%;
+      left: 50%; /*Đặt phần tử .slider-text ở giữa theo chiều dọc và ngang bằng cách đặt top và left là 50%. Điều này đưa phần tử vào trung tâm của .slider.*/
+      transform: translate(-50%, -50%); /*Dịch chuyển phần tử .slider-text theo chiều ngang và dọc với giá trị translate(50%, 50%). Điều này giúp căn chỉnh phần tử chính xác vào trung tâm của .slider*/
+      background-color: rgba(200, 196, 183, 0.8);
+      color: #fff;
+      padding: 10px;
+      font-size: 16px;
+      text-align: center;
+      transition: background-color 0.3s, transform 0.3s; /*Đặt hiệu ứng chuyển đổi khi hover vào phần tử .slider-text.*/
+    }
+    .slider-text:hover {
+      background-color:rgba(74, 74, 71, 0.8); /*Đặt màu nền của phần tử .slider-text khi hover là màu xám đậm với độ trong suốt 80%.*/
+      transform: translate(-50%, -50%) scale(1.1); /*Dịch chuyển và co giãn phần tử .slider-text khi hover để tạo hiệu ứng phóng to*/
+    }
+    .slider-button {
+      color:black;
+      text-decoration: none;
+      font-weight: 700;
+      font-style: italic;
+      font-size: 16px;
+    }
+    .slider-button:hover{
+      color:#b2c1aa; /*Đặt màu nền của phần tử khi hover*/
+    }
+   
+    /*Về chúng tôi*/
+ .aboutus {
+  background-color: #89997e4b;
+  display: flex; /*sử dụng flexbox để kiểm soát việc căn chỉnh và xếp chồng các phần tử bên trong*/
+  flex-direction: column;/*Xếp chồng các phần tử bên trong theo hướng dọc */
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  margin: 50px;
+}
+
+.about__h2 {
+  color:#435334
+}
+
+.about__content {
+  margin-bottom: 20px;
+  color:#555;
+}
+
+.aboutus-button {
+  display: inline-block;/*Đặt phần tử hiển thị inline-block để nó nằm trên cùng một dòng với các phần tử khác*/
+  text-decoration:none;
+  color:#050505;
+  font-style: italic;
+  font-weight: 600;
+
+}
+.aboutus-button:hover{
+      color:#49613e; /*Đặt màu nền của phần tử khi hover*/
+      transform: scale(1.1);
+  filter: brightness(150%);/**/
+    }
+/*San pham ban chay*/
+  .headline{
+            text-align: center;
+        }
+
+    .headline h3{ /*định dạng các tiêu đề h3*/
+            font-size: 24px;
+            color: #111;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            display: inline-block;
+            color: #555;
+            font-weight: 600;
+        }
+
+    ul.sanpham{ /*định dạng danh sách không có thứ tự có class "sanpham". loại bỏ kiểu danh sách mặc định, làm cho các mục danh sách hiển thị dưới dạng các phần tử flex và sắp xếp chúng thành một hàng với khoảng cách giữa các phần tử.*/
+            list-style: none;
+            display: flex; /*căn chỉnh và xếp chồng các phần tử con bên trong.*/
+            flex-wrap: wrap;/*Xếp chồng các phần tử con thành nhiều hàng khi không đủ không gian ngang để chứa tất cả các phần tử trên cùng một hàng.*/
+            justify-content: space-between;
+          }
+    .sanpham-item{
+            border: 1px solid #BDBDBD;
+            padding: 10px 0px 0px;
+            margin-bottom: 1.5em;
+
+        }
+    .sanpham-item:hover {/*định dạng các phần tử có class "sanpham-item" khi được hover. Nó thay đổi viền thành 1 pixel solid #4cf799 và đặt màu nền là #ecffe7.*/
+            border: 1px solid #526d5e;
+            background: #ecffe7;
+        }
+    ul.sanpham li{/*định dạng các mục danh sách trong danh sách "sanpham"*/
+            flex-basis: 25%;/*mỗi mục chiếm 25% không gian có sẵn*/
+            padding-left: 10px;
+            padding-right: 10px;
+            box-sizing: border-box; /*(bao gồm padding và border trong tổng chiều rộng và chiều cao của phần tử*/
+            margin-bottom: 30px;
+        }
+    ul.sanpham li img{/*định dạng hình ảnh trong các mục danh sách*/
+            max-width: 200px;
+            padding:10px;
+             -moz-transition: all 0.3s;
+             -webkit-transition: all 0.3s;
+             transition: all 0.3s;/*áp dụng hiệu ứng transition với thời gian 0.3 giây.*/
+        }
+    ul.sanpham li:hover img {/*định dạng hình ảnh trong các mục danh sách khi được hover. */
+        -moz-transform: scale(1.1);
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);/* co giãn hình ảnh lên 1.1 lần kích thước ban đầu bằng cách sử dụng thuộc tính transform */
+        }
+    ul.sanpham li .sanpham-top{
+            position: relative;
+            overflow: hidden; /*ẩn bất kỳ nội dung nào vượt quá phần tử*/
+        }
+    ul.sanpham li .sanpham-top .sanpham-thumb{
+            display: block;
+        }
+    ul.sanpham li .sanpham-top .sanpham-thumb img{
+            display: block;
+        }
+    ul.sanpham li:hover .sanpham-top .sanpham-thumb img{
+            filter: opacity(70%);/*áp dụng một hiệu ứng filter giảm độ mờ của hình ảnh xuống còn 70%*/
+        }
+    ul.sanpham li .sanpham-top a.mua {
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            display: block;
+            background-color: #366b40;
+            color: #fff;
+            padding: 10px 0px;
+            position: absolute;
+            bottom: -40px;
+            width: 100%;
+            transition: 0.25s ease-in-out;/*Áp dụng hiệu ứng chuyển đổi trong thời gian 0.25 giây với chế độ chuyển đổi là "ease-in-out".*/
+            opacity: 0.85; /* Đặt độ mờ (độ trong suốt) của phần tử là 0.85 (85%).*/
+        }
+     ul.sanpham li:hover a.mua{
+            bottom: 0px; /*khi di chuột vị trí bottom của liên kết "Mua" được đặt thành 0px, hiển thị phần tử ở vị trí ban đầu.*/
+        }
+    ul.sanpham li .sanpham-info {/*Định dạng thông tin sp*/
+            padding: 10px 10px;
+        }
+    ul.sanpham li .sanpham-info a{
+            display: block;
+            text-decoration: none;
+        }
+    ul.sanpham li .sanpham-info a.sanpham-danhmuc{/*Định dạng danh mục sp*/
+            font-size: 11px;
+            text-transform: uppercase;/*Chuyển đổi chữ thành viết hoa.*/
+            color: #9e9e9e;
+            padding: 3px 0px;
+           
+        }
+    ul.sanpham li .sanpham-info a.sanpham-name{/*Định dang tên sp*/
+            color: #334862;
+            padding: 3px 0px;
+        }
+    ul.sanpham li .sanpham-info .sanpham-gia{/*Định dạng giá sp*/
+            color: #111;
+            padding: 3px 0px;
+            font-weight: 600;
+        }
+.btn{/*định dạng nút*/
+            font-size: 16px;
+            color: #111;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            display:flex;
+            color: #3f5e38;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.5s;/*hiết lập hiệu ứng chuyển đổi cho tất cả các thuộc tính với thời gian 0.5s.*/
+}
+.btn span {
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+}
+
+
+.btn span:after {
+            content: '\00bb'; /*Thiết lập nội dung của phần tử :after là dấu mũi tên chéo (»).*/
+            position: absolute;
+            opacity: 0; /* Thiết lập độ mờ của phần tử là 0, tức là ẩn đi ban đầu.*/
+            top: 0;/*vị trí từ phía trên là 0.*/
+            right: -10px;/*Thiết lập vị trí từ phía bên phải là -10px, tức là ngoài khung hiển thị*/
+            transition: 0.5s;/* hiệu ứng chuyển đổi cho thuộc tính với thời gian 0.5s*/
+            }
+
+
+.btn:hover span { /*Áp dụng khi di chuột hover vào phần tử span bên trong phần tử có lớp "btn".*/
+            padding-right: 25px;
+            }
+
+
+ .btn:hover span:after {
+            opacity: 1; /*Thiết lập độ mờ của phần tử là 1, tức là hiển thị phần tử.*/
+            right: 0; /*vị trí từ phía bên phải là 0, tức là nằm trong khung hiển thị.*/
+}
+ 
+/* Tiêu chí */
+.tieuchi-contain{
+    background-color: #4b5d536a;
+  }
+.tieuchi-contain ul {
+    text-align: center;
+  }
+.tieuchi-contain ul li {
+    color: #fff;
+    display: inline-block; /* Đặt phần tử hiển thị là inline-block để phần tử nằm trên cùng một dòng*/
+    width: 250px;
+    text-align: center;
+    margin:5%;
+  }
+.tieuchi-contain ul li p {
+    width: 100%;
+  }
+.tieuchi-contain ul li .icon {
+    margin-bottom: 14px;
+  }
+.tieuchi-contain ul li .icon i {
+    font-size: 30px;
+  }
+.tieuchi-contain ul li:hover {
+            color:#46583a; /*hiệu ứng đổi màu khi hover chuột vào các phần tử*/
+        }
+ 
+
+
+/*Workshop*/
+.workshop-container {
+  background-image: url("https://www.elledecoration.vn/wp-content/uploads/2018/08/35102766_2034678473460942_2056097356805308416_o.jpg");
+  background-repeat: none;/*không lặp lại ảnh nền*/
+  background-position: center;
+  width:100%;
+  background-attachment: fixed; /*giữ ảnh nền cố định khi cuộn trang*/
+}
+.workshop-text {
+  text-align: center;
+  line-height: 2.5;
+  color:#131514;
+}
+
+.workshop-title {
+  margin: 0;
+font-size: medium;
+}
+
+.workshop-content {
+  margin: 20px 0;
+}
+
+.sign-in-button {
+  color: rgb(116, 38, 38);
+  text-decoration: none;
+  font-weight: 700;
+  font-style: italic;
+  font-size: 20px;
+}
+
+.sign-in-button:hover {
+  color: #050505;
+  background-color: rgba(200, 196, 183, 0.6);;
+} /*đổi màu chữ, nền chữ khi hover vào phần tử */
+
+.danhgia{
+    background-color:#D9D9D9 ;
+    text-align: center;
+font-family: Arial ;
+padding: 50px 100px 15px 200px
+}
+  /*Định dạng cho desc*/
+.danhgia .desc{
+    color:#6F7E78;
+  /*Định dạng cho day*/
+}
+.danhgia .day{
+    color:#6F7E78;
+    font-style: italic;
+}
+  /*Định dạng cho name*/
+.danhgia .name{
+    color:#435334;
+    font-weight: bolder;
+    transition: transform 0.3s ease;
+}
+  /*Hiệu ứng khi di chuột vào avt*/
+.danhgia .avt:hover {
+  transform: scale(1.2)}
+    /* định dạng trong footer*/
+    .footer{
+    zoom: 1;
+  }
+  .footer {
+  background-color: #8C9B8F;
+  display:flex;
+  flex-wrap: wrap;/*Cho phép các phần tử con trong flex container xuống dòng khi không đủ không gian.*/
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer .thongtin a{
+    display:inline-block; /* Thiết lập phần tử hiển thị dưới dạng khối nội dung trên cùng một dòng.*/
+    margin: 10px;
+    color:#D9DCDA;
+    font-family:Arial;
+    text-decoration: none;
+    transition: transform 0.3s ease; /*Tạo hiệu ứng chuyển đổi (transition) cho thuộc tính transform trong thời gian 0.3 giây với đặc tính easing để làm mượt hiệu ứng chuyển đổi*/
+  }
+   /* tạo hiệu ứng phát sáng khi di chuột vào thẻ a, dùng filter và tăng độ sáng brightness lên 150% */
+  .footer .thongtin a:hover{
+  transform: scale(1.1); /* Thay đổi tỷ lệ hiển thị của phần tử lên 110% so với kích thước ban đầu*/
+  filter: brightness(150%);/*Điều chỉnh độ sáng của phần tử lên 150%*/
+   }
+
+  .footer a {
+    color:#D9DCDA;
+    text-decoration: none;
+    transition: 0.3s color;
+  }
+  .footer a:hover {
+    color: #ede9e9;
+  }
+  .footer ul {
+    list-style: none;
+    
+  }
+  
+  footer div h4 {
+    margin-bottom: 2px;
+    padding:0px 0px 0 30px ;
+    color:#D9DCDA;
+  }
+ 
+</style>
+</head>
+    <body>
+      <div id="wrapper">
+         <!--header-->
+        <header>
+          <div class="logo">
+                  <img src="/winktetua (3).png" alt="Logo">
+                </div>
+                <div class="search">
+                  <a href="#"><i class="fas fa-search"></i></a>
+                </div>
+                <div class="cart">
+                  <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                </div>
+                <div class="wishlist">
+                  <a href="#"><i class="fas fa-heart"></i></a>
+                </div>
+                <div class="account">
+                  <a href="#"><i class="fas fa-user"></i></a>
+          </div>
+        </header>
+         <!--menu-->
+        <nav class="nav">
+            <ul>
+                <li><a href="/">Trang chủ</a></li>
+                <li><a href="/">Cửa hàng</a></li>
+                <li><a href="/">Workshop</a></li>
+                <li><a href="/">Về Y.Ceramic</a></li>
+                <li><a href="/">Bảng tin</a></li>
+                <li><a href="/">Chính sách</a></li>
+            </ul>
+        </nav>
+         <!--slider-->
+        <div class="slider">
+            <div class="slider-image">
+              <img src="./HeathCeramics_WS23_Hero-1.webp" alt="bộ sưu tập">
+              <div class="slider-text">
+                <h3> BỘ SƯU TẬP MỚI </h3>
+                <h2>ĐÔNG</h2>
+                <P> Đông - bộ sưu tập mới nhà Y.Ceramic mang khuynh hướng cổ điển với tông màu ấm xoa tan cái lạnh </P>
+                <a href="/" class="slider-button">Xem thêm</a>
+              </div>
+            </div>
+        </div>
+      </div>
+       <!--about us-->
+      <div class="aboutus">
+        <h2 class="about__h2">Xin chào, chúng tôi là Y.Ceramic</h2>
+        <p class="about__content">
+          Mỗi sản phẩm đều có một câu chuyện và ý nghĩa riêng của chúng. Đó là tâm huyết và niềm tin về sự giản đơn của người nghệ nhân muốn lan tỏa. Mong bạn an trú nơi tâm hồn với những điều giản đơn và gần gũi nhất
+        </p>
+        <a href="/" class="aboutus-button"> Xem thêm </a>
+    </div>
+
+     <!--sản phẩm bán chạy-->
+            <div class="headline">
+                <h3>Sản phẩm bán chạy</h3>
+            </div>
+            <ul class="sanpham">
+                <li>
+                    <div class="sanpham-item"> <!--Khung bọc toàn bộ nội dung của từng sản phẩm-->
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="images (1).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">Đĩa</a>
+                                <a href="" class="sanpham-name">Dĩa gốm SESAM men mờ hạt tiêu liti</a>
+                                <div class="sanpham-gia">185.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="sanpham-item">
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="tải xuống (7).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">Đĩa</a>
+                                <a href="" class="sanpham-name">Marine Plates Dĩa gốm sứ tráng men</a>
+                                <div class="sanpham-gia">125.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li><li>
+                    <div class="sanpham-item">
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="tải xuống (1).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">CỐC</a>
+                                <a href="" class="sanpham-name">Cốc gốm Jimcrea men mờ có hạt liti</a>
+                                <div class="sanpham-gia">132.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li><li>
+                    <div class="sanpham-item">
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="tải xuống (2).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                           
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">Đĩa</a>
+                                <a href="" class="sanpham-name">Dĩa Tiny Pepper</a>
+                                <div class="sanpham-gia">169.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li><li>
+                    <div class="sanpham-item">
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="tải xuống (3).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">CỐC</a>
+                                <a href="" class="sanpham-name"> Cốc gốm Dot Mug</a>
+                                <div class="sanpham-gia">232.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li><li>
+                    <div class="sanpham-item">
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="tải xuống (4).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">Đĩa</a>
+                                <a href="" class="sanpham-name">Dĩa Pansy màu trắng viền vân sọc.</a>
+                                <div class="sanpham-gia">232.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li><li>
+                    <div class="sanpham-item">
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="tải xuống (5).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">Set</a>
+                                <a href="" class="sanpham-name">Bộ chén dĩa gốm sứ MOON SET</a>
+                                <div class="sanpham-gia">330.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li><li>
+                    <div class="sanpham-item">
+                        <div class="sanpham-top">
+                            <a href="" class="sanpham-thumb">
+                                <img src="tải xuống (6).jpg" alt="">
+                            </a>
+                            <a href="" class="mua">Mua ngay</a>
+                            <div class="sanpham-info">
+                                <a href="" class="sanpham-danhmuc">SET</a>
+                                <a href="" class="sanpham-name">JIMCREA Bộ Bát Dĩa Gốm Bề Mặt Mờ</a>
+                                <div class="sanpham-gia">375.000 ₫</div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <a href="" class="btn" data-wow-duration="1s" data-wow-delay="0s" data-wow-offset="10"> <!--data-wow-duration="1s": Thiết lập thuộc tính tùy chỉnh "data-wow-duration" Đây có thể là thuộc tính dùng để điều khiển hiệu ứng của thư viện "wow.js".-->
+                <span>XEM THÊM</span>
+            </a>  
+</div>
+ <!--các tiêu chí-->
+        <div class="tieuchi-contain">
+            <ul>
+            <li> 
+                <p class="icon"><i class="fas fa-phone-volume"></i></p>
+                <p>Sản phẩm chất lượng</p>
+            </li>
+            <li> 
+                <p class="icon"><i class="fas fa-map-marker-alt"></i></p>
+                <p>Đội ngũ nhân viên tận tâm</p>
+            </li>
+            <li>
+                 <p class="icon "><i class="far fa-clock"></i></p>
+                <p>Đóng gói đảm bảo</p>
+            </li>
+        </ul>
+      </div>
+     <!--workshop-->
+    <div class="workshop-container">
+            <div class="workshop-text">
+              <h2>WORKSHOP LÀM GỐM</h2>
+              <div class="workshop-title">
+                <h3>Đừng bỏ lỡ!</h3>
+                <div class="workshop-content">
+                  <p>Hãy để The Y Ceramics đồng hành cùng bạn trên hành trình chữa lành tâm hồn bằng chính đôi bàn tay của bạn</p>
+                  <a class="sign-in-button" href="/workshop.html">Đăng Ký Ngay</a>
+                </div>
+              </div>
+            </div>
+    </div>
+</div>
+</div>
+<!--Đánh giá của khách hàng-->
+<div class="danhgia">
+  <h2 class="title">
+      Đánh giá từ khách hàng
+  </h2>
+  <h4 class="text">Khách hàng nói gì về Y.Ceramic</h4>
+  <img src="./Ellipse 23.svg" width="100"  alt="avt" class="avt">
+  <p class="name"> @justsimei</p>
+  <div class="namsao">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+  </div>
+  <p class="desc">
+      Tuần vừa qua mình có dịp được trải nghiệm tham gia workshop ở đây và thực sự bị ấn tượng bởi không gian cực kỳ thoáng mát và dễ chịu nơi đây. Mình được các bạn nhân viên hướng dẫn rất chu đáo và nhiệt tình, tỉ mỉ từng bước một nhưng vẫn rất thân thiện, mến khách. The Y Ceramic đã cho mình trải nghiệm quá tuyệt vời và chắc chắn mình sẽ quay lại nữa.
+  </p>
+ 
+  <p class="day">Ngày 22 tháng 10 năm 2023</p>
+          </div>
+  <!--footer-->
+  <footer class="footer">
+        <div class="chinhanh">
+          <h4>Chi nhánh</h4>
+          <nav>
+            <ul>
+              <li><a href="./">Chi nhánh 1: 279 Nguyễn Tri Phương, phường 5, quận 10, TP. Hồ Chí Minh
+                <br> Điện thoại: (+84)987654321</a>
+              </li>
+              <li><a href="./">Chi nhánh 2: 59C Nguyễn Đình Chiểu, phường 6, quận 3, TP. Hồ Chí Minh
+                <br> Điện thoại: (+84)876954321</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="thongtin">
+          <h4>Thông tin</h4>
+          <nav>
+            <ul>
+              <li>
+                <a href="#!">Trang chủ</a>
+              </li>
+              <li>
+                <a href="#!">Cửa hàng</a>
+              </li>
+              <li>
+                <a href="#!">Workshop</a>
+              </li>
+              <li>
+                <a href="#!">Về Y.Ceramic</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="thongtin">
+          <h4>Liên hệ</h4>
+          <nav>
+            <ul>
+              <li>
+                <a href="#!">Hotline:(+84)987654321</a>
+              </li>
+              <li>
+                <a href="#!">Email: theyceramic@gmail.com</a>
+              </li>
+              <li>
+                <div class="social">
+                  <a href=""><i class="fab fa-facebook-f icon"></i></a>
+                  <a href=""><i class="fab fa-youtube icon"></i></a>
+                  <a href=""><i class="fab fa-instagram icon"></i></a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+  </footer>
+        
+</div>
+</body>
+</html>
